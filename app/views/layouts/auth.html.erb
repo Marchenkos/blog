@@ -9,13 +9,20 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="h-full mt-4 mx-auto flex items-end">
-      <%= yield %>
+  <body class="auth w-full min-h-screen">
+    <main class="flex w-full min-h-screen items-center justify-center">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+
+      <div class="auth-container h-fit w-[300px] py-4 px-8">
+        <%= yield %>
+      </div>
+
     </main>
   </body>
 </html>
