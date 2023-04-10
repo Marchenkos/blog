@@ -53,6 +53,7 @@ body.auth .auth-container {
 }
 
 form .field {
+  display: flex;
   align-items: baseline;
   color: #575757;
   gap: 8px;
