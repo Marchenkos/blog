@@ -1,9 +1,7 @@
 class User < ApplicationRecord
-  validates_presence_of :username, :email, :password
+  validates :username, :email, :password, presence: true
   validates :username, uniqueness: true
   validate :password_complexity
-
-  devise :validatable, password_length: 8..30
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,9 +11,11 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
+  private
+
   def password_complexity
     if password.present? && !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&=])[A-Za-z\d@$!%*?&=]{8,}$/)
-      errors.add :password, "must contain at least one digit, one lowercase letter, one uppercase letter, and one special character"
+      errors.add :password, I18n.t('errors.models.password.complexity')
     end
   end
 end

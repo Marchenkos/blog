@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  errors:
+    models:
+      password:
+        complexity: "Password is too long (maximum is %{count} characters)"
