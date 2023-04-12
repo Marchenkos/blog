@@ -36,6 +36,11 @@ input[type=password] {
   border-color: #7d7d7d7d;
 }
 
+div {
+  width: 500px;
+}
+
+
 body.auth {
   background-image: url(/assets/bg/im3.jpeg);
   background-size: cover;
@@ -62,4 +67,9 @@ form .field {
 
 form .field > i {
   font-size: 20px;
+}
+
+
+h1 {
+  color: red !important;
 }
