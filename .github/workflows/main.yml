@@ -52,3 +52,5 @@ jobs:
           echo "🍏 This job's status is ${{ job.status }}."
         env:
           RAILS_ENV: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
