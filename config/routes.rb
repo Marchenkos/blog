@@ -1,18 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :users
   resources :home, only: [:index]
+  root to: 'home#index'
+
+  devise_for :users,
+    controllers: {
+      registrations: "users/registrations",
+      sessions: "users/sessions",
+      passwords: "users/passwords"
+    }
 
   devise_scope :user do
-    # authenticated :user do
-    #   root to: 'home#index', as: :user_url
-    # end
-
     unauthenticated :user do
-      root to: 'devise/sessions#new', as: :unauthenticated_root
+      root to: 'users/sessions#new'
     end
-  end
-
-  authenticated :user do
-    root to: 'home#index', as: :user_url
   end
 end
