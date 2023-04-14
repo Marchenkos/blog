@@ -1,0 +1,46 @@
+name: CI
+
+permissions:
+  contents: read 
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  rspec_tests:
+    runs-on: ubuntu-latest
+
+    services: 
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set uo Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.2'
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Create DB
+        run: bin/rails db:prepare
+
+      - name: Run tests
+        run: |
+          bundle exec rspec
+          echo "🍏 This job's status is ${{ job.status }}."
