@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :home, only: [:index]
-  root to: 'home#index'
+  # root to: 'home#index'
 
   devise_for :users,
     controllers: {
@@ -13,5 +13,9 @@ Rails.application.routes.draw do
     unauthenticated :user do
       root to: 'users/sessions#new'
     end
+  end
+
+  authenticated :user do
+    root 'home#index', as: :user_root
   end
 end
