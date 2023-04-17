@@ -11,6 +11,17 @@ en:
               too_long: "Password is too long (maximum is %{count} characters)"
 
   devise:
+    screen_title:
+      login: "Login"
+      registration: "Registration"
+      forgot_password: "Forgot your password?"
+    links:
+      create_account: "Create new account"
+      lon_in: "Log in"
+      back: "Back"
+    messages:
+      do_not_have_account: "Don't have an account?"
+      already_have_account: "Already have an account?"
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."

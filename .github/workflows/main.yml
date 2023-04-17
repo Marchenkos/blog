@@ -32,7 +32,7 @@ jobs:
       - name: Install dependent libraries
         run: sudo apt-get install libpq-dev
 
-      - name: Bundle install
+      - name: Bundle Install
         run: |
           gem install bundler
           bundle install
@@ -46,10 +46,17 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
 
-      - name: Run tests
+      - name: Run Tests
         run: |
           bundle exec rspec
           echo "🍏 This job's status is ${{ job.status }}."
+        env:
+          RAILS_ENV: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+      - name: Check Rubocop Styles tests
+        run: |
+          bundle exec rubocop
         env:
           RAILS_ENV: test
           POSTGRES_USER: postgres
