@@ -21,15 +21,18 @@
         <%= f.text_area :body, class: 'input--light min-h-[200px]' , placeholder: 'Your review...' %>
       </div>
 
-      <div>
+      <%
+=begin%>
+ <div>
         <%= f.label "cover", class: 'file' do %>
           <%= f.file_field :cover, data: { label: "Choose review cover" } %>
           <span class="file-custom" data-label="Choose review cover..."></span>
         <% end %>
-      </div>
+      </div> 
+<%
+=end%>
 
       <%= f.file_field :cover, data: { label: "Choose review cover" } %>
-
 
       <%= f.submit 'Create', class: 'button--purple w-[200px] self-end' %>
     <% end %>
