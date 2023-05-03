@@ -42,6 +42,7 @@ jobs:
         run: |
           gem install bundler
           bundle install
+          bundle exec rake assets:precompile
 
       - name: Rubocop check
         run: |
