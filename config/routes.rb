@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :home, only: [:index]
+  resources :reviews, only: [:index, :new, :create]
+  resources :account, only: [:index]
+
   # root to: 'home#index'
 
   devise_for :users,

@@ -19,14 +19,6 @@ html, body {
   min-height: 100vh;
 }
 
-input[type=text],
-input[type=email],
-input[type=password] {
-  background: transparent;
-  border: none;
-  padding: 4px 0 2px 0;
-}
-
 [multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea {
   background: transparent;
   --tw-ring-color: none;

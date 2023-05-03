@@ -1,0 +1,23 @@
+<div class="py-20 px-8 bg-[#e6e6f0] min-h-screen">
+  <section class="w-full bg-white rounded shadow-modal overflow-hidden">
+    <div class="w-full h-[250px] relative">
+      <div class="bg-home-splash grayscale-[50%] absolute inset-0"></div>
+      <%= image_tag(image_path('default_avatar.png'), class: 'w-[200px] absolute top-[120px] left-[50px] clip-circle') %>
+
+    </div>
+
+    <div class="py-20 px-20">
+      <div class="flex justify-between items-baseline">
+        <div>
+          <h4 class="text-2xl mb-2">Lily Koning</h4>
+          <p class="text-gray-500">@<%= current_user.username %></p>
+        </div>
+
+        <%= link_to "Create Review", new_review_path, class: 'button--purple block' %>
+      </div>
+      <p class="mt-2">
+        Despite its prevalence, “About Me” is not an easy section to write. Many people have trouble with writing about themselves. Not only you have to introduce who you are but also have to make it intriguing so that they would want to read the rest of your profile, portfolio, etc.
+      </p>
+    </div>
+  </section>
+</div>

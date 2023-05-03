@@ -1,0 +1,37 @@
+<div class="flex items-center px-20 bg-[#e6e6f0] min-h-screen">
+  <section class="w-full h-fit bg-white rounded shadow-modal overflow-hidden py-10">
+    <h2 class="text-center">New Review</h2>
+
+    <%= form_with model: @review, class: 'flex flex-col justify-end gap-4 px-8 mt-10' do |f| %>  
+      <div>
+        <%= f.text_field :title, class: 'input--light', placeholder: 'Review title' %>
+      </div>
+
+      <div class="flex gap-4">
+        <div class="w-1/2">
+          <%= f.text_field :book_name, class: 'input--light', placeholder: 'Book name' %>
+        </div>
+
+        <div class="w-1/2">
+          <%= f.text_field :author, class: 'input--light', placeholder: 'Author'  %>
+        </div>
+      </div>
+
+      <div>
+        <%= f.text_area :body, class: 'input--light min-h-[200px]' , placeholder: 'Your review...' %>
+      </div>
+
+      <div>
+        <%= f.label "cover", class: 'file' do %>
+          <%= f.file_field :cover, data: { label: "Choose review cover" } %>
+          <span class="file-custom" data-label="Choose review cover..."></span>
+        <% end %>
+      </div>
+
+      <%= f.file_field :cover, data: { label: "Choose review cover" } %>
+
+
+      <%= f.submit 'Create', class: 'button--purple w-[200px] self-end' %>
+    <% end %>
+  </section>
+</div>

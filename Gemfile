@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.2'
+ruby '3.2.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
@@ -32,6 +32,8 @@ gem 'devise', '~> 4.8'
 gem 'rubocop', '~> 1.50', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-rspec', require: false
+
+gem 'brakeman', require: false
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
@@ -82,3 +84,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem 'image_processing', '~> 1.12'
