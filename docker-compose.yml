@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  my_review_db:
+    container_name: my-review-db
+    image: postgres:14-alpine
+    volumes:
+      - postgres_v:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file: 
+      - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blog_development
+
+volumes:
+  postgres_v:

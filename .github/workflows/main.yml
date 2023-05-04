@@ -1,0 +1,67 @@
+name: CI
+
+permissions: {}
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+env:
+  RAILS_ENV: test
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_PORT: 5432
+
+jobs:
+  executing_all_checks:
+    runs-on: ubuntu-latest
+
+    services: 
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports: 
+          - '5432:5432'
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set uo Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.0'
+
+      - name: Install dependent libraries
+        run: sudo apt-get install libpq-dev
+
+      - name: Bundle Install
+        run: |
+          gem install bundler
+          bundle install
+          bundle exec rake assets:precompile
+
+      - name: Rubocop check
+        run: |
+          bundle exec rubocop
+
+      - name: Brakeman check
+        run: |
+          bundle exec brakeman
+
+      - name: Zeitwerk check
+        run: |
+          bin/rails zeitwerk:check
+
+      - name: Setup Database
+        run: |
+          bundle exec rake db:create
+          bundle exec rake db:schema:load
+
+      - name: Run Tests
+        run: |
+          bundle exec rspec
+          echo "🍏 This job's status is ${{ job.status }}."

@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+
+html, body {
+  min-height: 100vh;
+}
+
+[multiple], [type=date], [type=datetime-local], [type=email], [type=month], [type=number], [type=password], [type=search], [type=tel], [type=text], [type=time], [type=url], [type=week], select, textarea {
+  background: transparent;
+  --tw-ring-color: none;
+  border-color: gray;
+}
+
+[multiple]:focus, [type=date]:focus, [type=datetime-local]:focus, [type=email]:focus, [type=month]:focus, [type=number]:focus, [type=password]:focus, [type=search]:focus, [type=tel]:focus, [type=text]:focus, [type=time]:focus, [type=url]:focus, [type=week]:focus, select:focus, textarea:focus {
+  --tw-ring-color: none;
+}
+
+ input:-webkit-autofill,
+ input:-webkit-autofill:hover,
+ input:-webkit-autofill:focus,
+ input:-webkit-autofill:active {
+   transition: background-color 5000s ease-in-out 0s;
+   -webkit-text-fill-color: #071e2996 !important;
+ }
+
+ input:-webkit-autofill,
+ input:-webkit-autofill:active,
+ input:-webkit-autofill:hover {
+   -webkit-text-fill-color: #071e2996 !important;
+ }
+
+ input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #335263 !important;
+}
+
+input[type=submit],
+button {
+  cursor: pointer;
+}
+

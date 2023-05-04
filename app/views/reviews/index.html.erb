@@ -1,0 +1,5 @@
+<%= turbo_frame_tag 'reviews' do %>
+  <div>
+    <%= render partial: 'review_preview', collection: @reviews, as: :review %>
+  </div>
+<% end %>

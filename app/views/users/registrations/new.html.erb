@@ -1,0 +1,38 @@
+<h2 class="text-2xl font-semibold text-[#364650]"><%= t('devise.screen_title.registration') %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'grow'}) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="form-field my-4">
+    <i class="fa-solid fa-envelope"></i>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: 'app-input text-[#071e2996] focus:text-[#335263]'  %>
+  </div>
+
+  <div class="form-field my-4">
+    <i class="fa-solid fa-circle-user"></i>
+    <%= f.text_field :username, placeholder: "User name", class: 'app-input text-[#071e2996] focus:text-[#335263]'  %>
+  </div>
+
+  <div class="form-field mb-0">
+    <i class="fa-solid fa-unlock"></i>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: 'app-input text-[#071e2996] focus:text-[#335263]'  %>
+  </div>
+  <% if @minimum_password_length %>
+    <em class="text-[#0b2d3da3] text-sm">(<%= @minimum_password_length %> characters minimum)</em>
+  <% end %>
+
+  <div class="form-field mt-2">
+    <i class="fa-solid fa-lock"></i>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password", class: 'app-input text-[#071e2996] focus:text-[#335263]'  %>
+  </div>
+
+
+  <%= f.submit "Sign up", data: { turbo: false }, class: 'p-2 w-full mt-4 rounded text-lg font-semibold text-[#364650] bg-[#ffffff42] border border-[#dedede61]' %>
+
+<% end %>
+
+<div class="flex gap-4 mt-4">
+  <p class="text-[#071e2996] text-base"><%= t('devise.messages.already_have_account') %></p>
+
+  <%= link_to t('devise.links.lon_in'), new_session_path(resource_name), class: 'text-[#364650] underline hover:text-[#0b2d3da3]' %>
+</div>
