@@ -1,0 +1,37 @@
+<div class="flex gap-6 w-full cursor-pointer">
+  <div class="grow">
+    <h2><%= review.title %></h2>
+    <p class="mt-1">"<%= review.book_name %>", <%= review.author %></p>
+
+    <h3 class="multiline-ellipsis">
+      <%= review.body[0..300] %>
+    </h3>
+
+    <div class="flex justify-between items-end mt-3">
+    <div class="flex items-center gap-2">
+      <p><%= review.created_at.to_fs(:day_month_name_year) %></p>
+      <i class="fa-solid fa-circle text-[5px] text-slate-300"></i>
+
+      <p><%= reading_time(review.body) %></p>
+
+    </div>
+        <div class="flex gap-6 mt-2">
+      <div>
+        <i class="fa-solid fa-eye text-slate-400"></i>
+        <span>20</span>
+      </div>
+      <div>
+        <i class="fa-solid fa-heart  text-slate-400"></i>
+        <span>2</span>
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  <% if review.cover.representable? %>
+    <%= image_tag review.cover.variant(resize_to_fill: [500, 300]), class: "h-[174px] min-w-[300px]" %>        
+  <% end %>
+
+</div>
+

@@ -8,12 +8,11 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.writer = current_user
+    @review = current_user.reviews.build(review_params)
 
     if @review.save
       flash[:notive] = 'Review was successfully created'
-      redirect_to root_path
+      redirect_to account_index_path
     else
       render 'new'
     end

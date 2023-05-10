@@ -302,6 +302,7 @@ DEPENDENCIES
   rubocop (~> 1.50)
   rubocop-rails
   rubocop-rspec
+  ruby-vips (~> 2.1)
   selenium-webdriver
   sprockets-rails
   stimulus-rails

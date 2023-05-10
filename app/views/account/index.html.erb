@@ -6,18 +6,41 @@
 
     </div>
 
-    <div class="py-20 px-20">
-      <div class="flex justify-between items-baseline">
+    <div class="flex flex-col px-20">
+
+
+      <%= link_to "Edit Account", new_review_path, class: 'button--purple block w-[150px] self-end mt-4 bg-slate-400' %>
+
+      <div class="py-2">
         <div>
           <h4 class="text-2xl mb-2">Lily Koning</h4>
           <p class="text-gray-500">@<%= current_user.username %></p>
         </div>
+        <p class="mt-2">
+          Despite its prevalence, “About Me” is not an easy section to write. Many people have trouble with writing about themselves. Not only you have to introduce who you are but also have to make it intriguing so that they would want to read the rest of your profile, portfolio, etc.
+        </p>
 
-        <%= link_to "Create Review", new_review_path, class: 'button--purple block' %>
+        <div class="flex gap-6 mt-2">
+          <div class="mt-2">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>London, UK</span>
+          </div>
+
+          <div class="mt-2">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Joined 13 April 2023</span>
+          </div>
+        </div>
       </div>
-      <p class="mt-2">
-        Despite its prevalence, “About Me” is not an easy section to write. Many people have trouble with writing about themselves. Not only you have to introduce who you are but also have to make it intriguing so that they would want to read the rest of your profile, portfolio, etc.
-      </p>
+
+      <%= link_to "Create Review", new_review_path, class: 'button--purple block w-[200px] self-end mt-4' %>
+
+
+    <div class="flex flex-col gap-4 mt-12">
+
+      <%= render partial: 'shared/review_preview', collection: current_user.reviews, as: :review %>
+    </div>
+
     </div>
   </section>
 </div>
