@@ -1,0 +1,4 @@
+body:has(nav[style*='display: block']) {
+  overflow: hidden;
+  height: 100vh;
+}

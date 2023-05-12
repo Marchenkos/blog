@@ -1,0 +1,35 @@
+<div class='flex flex-col gap-2 w-full cursor-pointer px-4 py-2 bg-white rounded border'>
+  <div class="flex items-center justify-end">
+    <%= content_tag :div, class: 'flex gap-1 items-center' do %>
+      <%= image_tag(image_path('default_avatar.png'), class: 'w-[40px] h-[40px] clip-circle') %>
+      @<%= review.user.username %>
+    <% end %>
+    <p class="flex justify-end items-center grow"><%= review.created_at.to_fs(:day_month_name_year) %></p>
+  </div>
+  <% if review.cover.representable? %>
+    <%= image_tag review.cover.variant(resize_to_fill: [1200, 600]), class: "h-[300px] w-full rounded-t" %>        
+  <% end %>
+  
+  <div class="grow">
+    <%= link_to review_path(review), data: { turbo_frame: "_top" } do %>
+      <h2><%= review.title %></h2>
+      <p>"<%= review.book_name %>", <%= review.author %></p>
+    <% end %>
+    <h3 class="multiline-ellipsis">
+      <%= review.body[0..300] %>
+    </h3>
+
+    <div class="flex justify-between items-end mt-3">
+      <p><%= reading_time(review.body) %></p>
+
+      <div class="flex gap-6 mt-2">
+        <div>
+          <i class="fa-solid fa-eye text-slate-400"></i>
+          <span><%= review.hits %></span>
+        </div>
+
+        <%= render partial: 'shared/like_review', locals: { review: review } %>
+      </div>
+    </div>
+  </div>
+</div>

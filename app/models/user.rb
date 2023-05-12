@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validate :password_complexity
 
   has_many :reviews, dependent: :nullify
+  has_many :likes, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

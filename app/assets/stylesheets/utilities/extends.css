@@ -1,0 +1,15 @@
+@layer utilities {
+  .clip-circle {
+    clip-path: circle(40%)
+  }
+
+  .multiline-ellipsis {
+    overflow: hidden;
+    display: -webkit-box;
+    text-rendering: optimizeLegibility;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    
+    white-space: pre-line;
+  }
+}
