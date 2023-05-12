@@ -8,6 +8,7 @@ require 'rspec/rails'
 
 require 'support/factory_bot'
 require 'support/devise'
+require 'support/shoulda_matchers'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
