@@ -35,6 +35,9 @@ jobs:
         with:
           ruby-version: '3.2.0'
 
+      - name: Install vips
+        run: brew install vips
+
       - name: Install dependent libraries
         run: sudo apt-get install libpq-dev
 
