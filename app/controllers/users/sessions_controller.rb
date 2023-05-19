@@ -27,5 +27,11 @@ module Users
     # def configure_sign_in_params
     #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
     # end
+
+    def set_flash_message(key, kind, options = {})
+      return if %i[signed_in signed_out].include?(kind)
+
+      super
+    end
   end
 end

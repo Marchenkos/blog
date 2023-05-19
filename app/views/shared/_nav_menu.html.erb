@@ -8,6 +8,12 @@
   </li>
 
   <li class="overflow-hidden">
-    <%= link_to "Account", account_index_path, class: 'animate-showSlide font-montserrat font-extrabold text-6xl hover:font-sans'  %>
+
+    <% if user_signed_in? %>
+      <%= link_to "Account", account_index_path, class: 'animate-showSlide font-montserrat font-extrabold text-6xl hover:font-sans'  %>
+    <% else %>
+      <%= link_to "Log In", new_user_session_path, class: 'animate-showSlide font-montserrat font-extrabold text-6xl hover:font-sans'  %>
+    <% end %>
+
   </li>
 </ul>
