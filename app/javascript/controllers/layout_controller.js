@@ -10,11 +10,11 @@ export default class extends Controller {
       this.pinCircleToCursor(this.cursorCircleTarget);
     }
 
-    this.navMenuTarget.addEventListener("animationend", function() {
-      if ($(this.navMenuTarget).hasClass(this.hideClass)) {
-        $(this.navMenuTarget).hide();
-      }
-    }.bind(this));
+    // this.navMenuTarget.addEventListener("animationend", function() {
+    //   if ($(this.navMenuTarget).hasClass(this.hideClass)) {
+    //     $(this.navMenuTarget).hide();
+    //   }
+    // }.bind(this));
   }
 
   pinCircleToCursor(circle) {

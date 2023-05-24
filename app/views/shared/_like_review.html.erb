@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(review, :likes) do %>
   <% if user_signed_in? %>
     <div class="realtive group">
-        <%= button_to like_path(id: review.id), method: 'patch' do %>
+        <%= button_to toggle_like_review_path(review) do %>
           <% if review.liked?(user: current_user) %>
             <i class="fa-solid fa-heart text-rose-600"></i>
           <% else %>
