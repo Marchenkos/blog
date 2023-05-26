@@ -5,14 +5,12 @@ Rails.application.routes.draw do
   resources :account, only: [:index]
   resources :likes, only: [:update]
 
-  resources :reviews, shallow: true do
-    resources :comments, only: [:create, :toggle_like]
-  end
-
-  # match 'comments/:id/toggle_like' => 'comments#toggle_like', :via => :put
-
   resources :reviews do
     post :toggle_like, on: :member
+
+    scope module: 'reviews' do
+      resources :comments, only: [:index, :new, :create, :toggle_like]
+    end
   end
 
   devise_for :users,

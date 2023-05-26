@@ -89,3 +89,5 @@ end
 gem 'image_processing', '~> 1.12'
 
 gem 'ruby-vips', '~> 2.1'
+
+gem "thor", "~> 1.2"

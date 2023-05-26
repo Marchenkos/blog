@@ -3,9 +3,13 @@ module Reviews
     before_action :authenticate_user!, only: %i[create toggle_like]
     before_action :get_review, only: %i[index new create]
 
-    def index; end
+    def index
+      @comments = @review.comments
+    end
 
-    def new; end
+    def new
+      @comment = Comment.new
+    end
 
     def create
       @comment = Comment.new(commentable: @review, body: create_comment_params[:body], user: current_user)
@@ -21,7 +25,7 @@ module Reviews
     private
 
     def get_review
-      @review = Reviwe.find(params[:review_id])
+      @review = Review.find(params[:review_id])
     end
 
     def create_comment_params

@@ -29,7 +29,8 @@ class ReviewsController < ApplicationController
 
   def toggle_like
     @review = Review.find_by(id: review_params[:id])
-    LikesService.toggle_like(likable: @review)
+
+    LikesService.toggle_like(user: current_user, likable: @review)
 
     @review.reload
   end

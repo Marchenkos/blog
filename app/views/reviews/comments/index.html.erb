@@ -1,0 +1,5 @@
+<%= turbo_frame_tag dom_id(@review, 'comments') do %> 
+  <div id="<%= dom_id(@review, 'comment_list') %>" class="flex flex-col w-full gap-4">
+    <%= render partial: 'comment', collection: @comments %>
+  </div>
+<% end %>

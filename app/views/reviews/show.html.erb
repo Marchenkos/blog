@@ -1,4 +1,4 @@
-<div class='flex flex-col gap-2 px-44 pt-12 cursor-pointer px-4 py-2 bg-white rounded border'>
+<div class='flex flex-col gap-2 px-44 pt-12 cursor-pointer px-4 py-2 rounded border'>
   
   <h1 class=" text-4xl font-extrabold"><%= @review.title %></h1>
 
@@ -38,11 +38,13 @@
 
   <div class="mt-4 pt-8 border-t border-gray">
     <h3 class=" text-xl font-extrabold">Comments (<%= @review.comments_count %>)</h3>
-    
-    <%= form_with url: review_comments_path(@review), class: 'my-4' do |f| %>
-      <%= f.text_area :body, class: 'input--light', placeholder: 'Add the comment', disabled: !user_signed_in? %>
-    <% end %>
 
-    <%= link_to "Log in", new_user_session_path, class: ' border border-black p-2 rounded text-base' unless user_signed_in? %>
+    <%= turbo_frame_tag dom_id(@review, 'new_comment'), src: new_review_comment_path(@review) %>
+
+    <div class="mt-4">
+      <%= turbo_frame_tag dom_id(@review, 'comments'), src: review_comments_path(@review) %>
+    </div>
   </div>
+
+
 </div>
