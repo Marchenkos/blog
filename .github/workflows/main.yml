@@ -45,9 +45,10 @@ jobs:
           sudo apt-get install libpq-dev
           sudo apt-get install libvips
 
-      - name: Install NPM Packages 
+      - name: Install YARN Packages 
         run: |
-          npm ci
+          npm install yarn
+          yarn install
 
       - name: Bundle Install
         run: |
