@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
       flash[:notive] = 'Review was successfully created'
       redirect_to account_index_path
     else
-      render 'new'
+      redirect_to new_review_path
     end
   end
 

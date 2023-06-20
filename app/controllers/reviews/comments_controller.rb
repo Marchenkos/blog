@@ -14,6 +14,8 @@ module Reviews
     def create
       @comment = Comment.new(commentable: @review, body: create_comment_params[:body], user: current_user)
       @comment.save
+
+      redirect_to new_review_comment_path(@review) unless @comment.save
     end
 
     def toggle_like

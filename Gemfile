@@ -84,6 +84,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'webdrivers'
+  gem 'simplecov', require: false
 end
 
 gem 'image_processing', '~> 1.12'

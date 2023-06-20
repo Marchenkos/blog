@@ -3,7 +3,6 @@ require File.expand_path('config/environment.rb')
 
 module Seeds
   class Users < Thor
-    # include CommonTask
 
     desc 'generate', 'Generates multiple Users'
     method_option :number, aliases: '-n', type: :numeric, default: 5, desc: 'Number of Users to create'

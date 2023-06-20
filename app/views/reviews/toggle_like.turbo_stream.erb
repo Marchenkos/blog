@@ -1,5 +1,5 @@
 <turbo-stream action="replace" target="<%= dom_id(@review, :likes) %>">
   <template>
-    <%= render partial: 'shared/like_review', locals: { review: @review } %>
+    <%= render partial: 'shared/like_review', locals: { review: @review }, formats: [:html] %>
   </template>
 </turbo-stream>
