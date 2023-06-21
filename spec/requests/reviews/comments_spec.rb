@@ -22,31 +22,31 @@ RSpec.describe 'Comments', type: :request do
   end
 
   describe 'POST /create' do
-    let(:valid_attributes) {
+    let(:valid_attributes) do
       {
         body: Faker::Lorem.paragraph(sentence_count: 5)
       }
-    }
+    end
 
-    let(:invalid_attributes) {
+    let(:invalid_attributes) do
       {
         body: nil
       }
-    }
+    end
 
     context 'with valid parameters' do
       it 'creates a new review' do
-        expect {
+        expect do
           post review_comments_url(review, { comment: valid_attributes, format: :turbo_stream })
-        }.to change(Comment, :count).by(1)
+        end.to change(Comment, :count).by(1)
       end
     end
 
     context 'with invalid parameters' do
       it 'does not create a new review' do
-        expect {
+        expect do
           post review_comments_url(review, { comment: invalid_attributes, format: :turbo_stream })
-        }.to change(Comment, :count).by(0)
+        end.to change(Comment, :count).by(0)
       end
 
       it 'redirects to the /new when params are invalid' do

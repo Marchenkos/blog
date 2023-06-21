@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Registration page", type: :feature do
+RSpec.describe 'Registration page', type: :feature do
   it 'creates a new user and navigate to root path' do
     visit '/users/sign_up'
 
@@ -11,11 +11,11 @@ RSpec.describe "Registration page", type: :feature do
       fill_in 'Confirm password', with: 'Sup&eR7PP'
     end
 
-    expect{
+    expect do
       click_button 'Sign up'
-    }.to change(User, :count).by(1)
+    end.to change(User, :count).by(1)
 
-    expect(current_path).to eql(root_path)
+    expect(page).to have_current_path(root_path)
   end
 
   it 'does not create a new user with invalid params' do
@@ -26,8 +26,8 @@ RSpec.describe "Registration page", type: :feature do
       fill_in 'Password', with: 'Sup&eR7PP'
     end
 
-    expect{
+    expect do
       click_button 'Sign up'
-    }.to change(User, :count).by(0)
+    end.to change(User, :count).by(0)
   end
 end

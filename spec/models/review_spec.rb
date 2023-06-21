@@ -17,13 +17,13 @@ RSpec.describe Review, type: :model do
     let(:user) { build(:user) }
 
     it 'return false if the review is not liked by the user' do
-      expect(review.liked?(user:)).to be_falsey
+      expect(review).not_to be_liked(user:)
     end
 
     it 'return true if the review is liked by the user' do
       create(:like_of_review, user:, likable: review)
 
-      expect(review.liked?(user:)).to be_truthy
+      expect(review).to be_liked(user:)
     end
   end
 end

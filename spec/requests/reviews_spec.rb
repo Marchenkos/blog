@@ -27,23 +27,23 @@ RSpec.describe '/reviews', type: :request do
   end
 
   describe 'POST /create' do
-    let(:valid_attributes) {
+    let(:valid_attributes) do
       {
         title: Faker::Lorem.sentence,
         book_name: Faker::Book.title,
         author: Faker::Book.author,
         body: Faker::Lorem.paragraph(sentence_count: 5)
       }
-    }
+    end
 
-    let(:invalid_attributes) {
+    let(:invalid_attributes) do
       {
         title: nil,
         book_name: nil,
         author: Faker::Book.author,
         body: Faker::Lorem.paragraph(sentence_count: 5)
       }
-    }
+    end
 
     let(:user) { create(:user) }
     let(:review) { create(:review) }
@@ -54,9 +54,9 @@ RSpec.describe '/reviews', type: :request do
 
     context 'with valid parameters' do
       it 'creates a new review' do
-        expect {
+        expect do
           post reviews_url, params: { review: valid_attributes }
-        }.to change(Review, :count).by(1)
+        end.to change(Review, :count).by(1)
       end
 
       it 'redirects to the /account_index_path' do
@@ -67,9 +67,9 @@ RSpec.describe '/reviews', type: :request do
 
     context 'with invalid parameters' do
       it 'does not create a new review' do
-        expect {
+        expect do
           post reviews_url, params: { review: invalid_attributes }
-        }.to change(Review, :count).by(0)
+        end.to change(Review, :count).by(0)
       end
 
       it 'redirects to the /new when params are invalid' do
@@ -87,17 +87,17 @@ RSpec.describe '/reviews', type: :request do
     end
 
     it 'like review' do
-      expect {
+      expect do
         post toggle_like_review_url(review, { format: :turbo_stream })
-      }.to change(Like, :count).by(1)
+      end.to change(Like, :count).by(1)
     end
 
     it 'unlike review' do
       create(:like_of_review, user:, likable: review)
 
-      expect {
+      expect do
         post toggle_like_review_url(review, { format: :turbo_stream })
-      }.to change(Like, :count).by(-1)
+      end.to change(Like, :count).by(-1)
     end
   end
 end

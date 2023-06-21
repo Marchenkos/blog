@@ -83,12 +83,12 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.0'
-  gem 'webdrivers'
   gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 gem 'image_processing', '~> 1.12'
 
 gem 'ruby-vips', '~> 2.1'
 
-gem "thor", "~> 1.2"
+gem 'thor', '~> 1.2'

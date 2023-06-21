@@ -18,15 +18,19 @@ module Seeds
       (1..options[:number]).each do |_|
         random_user = User.offset(rand(users_count)).first
 
-        title = Faker::Lorem.sentence
-        body = Faker::Lorem.paragraph(sentence_count: rand(10..30))
-        author = Faker::Book.author
-        book_name = Faker::Book.title
-
-        Review.create(title:, body:, author:, book_name:, user: random_user)
+        create_review(user: random_user)
 
         puts "Created review for user - #{random_user.id}"
       end
+    end
+
+    def create_review(user:)
+      title = Faker::Lorem.sentence
+      body = Faker::Lorem.paragraph(sentence_count: rand(10..30))
+      author = Faker::Book.author
+      book_name = Faker::Book.title
+
+      Review.create(title:, body:, author:, book_name:, user:)
     end
   end
 end

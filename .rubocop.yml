@@ -8,10 +8,14 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'tmp/**/*'
+    - 'lib/**/*'
     - !ruby/regexp /old_and_unused\.rb$/
  
 RSpec/MultipleExpectations:
   Max: 2
+
+RSpec/ExampleLength:
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
