@@ -45,16 +45,14 @@ jobs:
           sudo apt-get install libpq-dev
           sudo apt-get install libvips
 
-      - name: Install YARN Packages 
+      - name: Install Packages 
         run: |
-          npm install yarn
-          yarn install
+          npm install
 
       - name: Bundle Install
         run: |
           gem install bundler
           bundle install
-          bundle exec rake assets:precompile
 
       - name: Rubocop check
         run: |
