@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
-  resources :home, only: [:index]
-  resources :reviews, only: [:index, :new, :create]
-  resources :account, only: [:index]
+  root to: 'home#index'
 
-  # root to: 'home#index'
+  resources :home, only: [:index]
+  resources :account, only: [:index]
+  resources :likes, only: [:update]
+
+  resources :reviews do
+    post :toggle_like, on: :member
+
+    scope module: 'reviews' do
+      resources :comments, only: [:index, :new, :create, :toggle_like]
+    end
+  end
 
   devise_for :users,
     controllers: {
@@ -11,12 +19,6 @@ Rails.application.routes.draw do
       sessions: "users/sessions",
       passwords: "users/passwords"
     }
-
-  devise_scope :user do
-    unauthenticated :user do
-      root to: 'users/sessions#new'
-    end
-  end
 
   authenticated :user do
     root 'home#index', as: :user_root

@@ -82,7 +82,13 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 5.0'
+  gem 'simplecov', require: false
   gem 'webdrivers'
 end
 
 gem 'image_processing', '~> 1.12'
+
+gem 'ruby-vips', '~> 2.1'
+
+gem 'thor', '~> 1.2'

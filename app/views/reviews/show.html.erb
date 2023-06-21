@@ -1,0 +1,50 @@
+<div class='flex flex-col gap-2 px-44 pt-12 cursor-pointer px-4 py-2 rounded border'>
+  
+  <h1 class=" text-4xl font-extrabold"><%= @review.title %></h1>
+
+  <div class="flex items-center gap-1 my-4">
+    <div class="clip-circle p-4 bg-[#373737]">
+      <i class="fa-solid fa-user text-lg text-white"></i>
+    </div>
+    <div>
+      <p>@<%= @review.user.username %></p>
+      <p class="flex items-center">
+        <%= @review.created_at.to_fs(:day_month_name_year) %>
+        <i class="fa-solid fa-circle text-[6px] text-[#a6a6a6] mx-2"></i>
+        <%= reading_time(@review.body) %> read</p>
+    </div>
+  </div>
+
+  <div class="py-4 mb-4 border-y border-gray">
+    <h2 class="text-center  text-2xl font-extrabold">"<%= @review.book_name %>", <%= @review.author %></h2>
+  </div>
+
+  <% if @review.cover.representable? %>
+    <%= image_tag @review.cover.variant(resize_to_fill: [1200, 600]), class: "w-full" %>        
+  <% end %>
+  
+  <div class="grow mt-4 text-lg">
+    <%= @review.body %>
+  </div>
+
+  <div class="flex gap-6 mt-2">
+    <div>
+      <i class="fa-solid fa-eye text-slate-400"></i>
+      <span><%= @review.visits.size %></span>
+    </div>
+
+    <%= render partial: 'shared/like_review', locals: { review: @review } %>
+  </div>
+
+  <div class="mt-4 pt-8 border-t border-gray">
+    <h3 class=" text-xl font-extrabold">Comments (<%= @review.comments_count %>)</h3>
+
+    <%= turbo_frame_tag dom_id(@review, 'new_comment'), src: new_review_comment_path(@review) %>
+
+    <div class="mt-4">
+      <%= turbo_frame_tag dom_id(@review, 'comments'), src: review_comments_path(@review) %>
+    </div>
+  </div>
+
+
+</div>

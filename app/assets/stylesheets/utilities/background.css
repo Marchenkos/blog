@@ -1,0 +1,5 @@
+@layer utilities {
+  .bg-auth {
+    background-image: url(/assets/bg/im2.jpeg);
+  }
+}

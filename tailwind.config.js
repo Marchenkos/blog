@@ -1,17 +1,19 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  
   content: [
     './public/*.html',
+    './app/views/**/*.{erb,haml,html,slim}',
+    './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
-    './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}'
+    './app/javascript/**/*.js'
   ],
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-        montserrat: ['Montserrat']
+        montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans]
       },
       backgroundImage: {
         'home-splash': "url('home_bg.jpeg')"

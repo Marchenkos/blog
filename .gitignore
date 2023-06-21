@@ -6,8 +6,12 @@
 
 .env
 
+/node_modules
+
 # Ignore bundler config.
 /.bundle
+
+/coverage
 
 config/master.key
 

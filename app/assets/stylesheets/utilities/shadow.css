@@ -1,0 +1,30 @@
+@layer utilities {
+  .shadow-bottom {
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.1), inset 0px -1px 0px rgba(0, 0, 0, 0.6);
+  }
+
+  .shadow-convex {
+    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+    filter: drop-shadow(1px 1px 0px rgba(0, 0, 0, 0.6));
+  }
+
+  .shadow-concave {
+    box-shadow: 1px 1px 0px rgba(255, 255, 255, 0.1), inset 0px 0px 4px #000000;
+  }
+
+  .shadow-button {
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1), inset 1px 1px 0px rgba(255, 255, 255, 0.1);
+  }
+
+  .shadow-table-cell {
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.1), inset 0px -1px 0px rgba(0, 0, 0, 0.6);
+  }
+
+  .shadow-modal {
+    box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+  }
+
+  .shadow-module-card {
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6), inset 1px 1px 1px rgba(255, 255, 255, 0.1);
+  }
+}

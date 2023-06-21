@@ -1,7 +1,11 @@
 class User < ApplicationRecord
   validates :username, :email, :password, presence: true
-  validates :username, uniqueness: true
+  validates :username, :email, uniqueness: true
   validate :password_complexity
+
+  has_many :reviews, dependent: :nullify
+  has_many :likes, dependent: :destroy
+  has_many :review_visits, dependent: :nullify
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

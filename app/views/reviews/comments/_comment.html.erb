@@ -1,0 +1,10 @@
+<div class="flex flex-col w-full gap-2 p-4 rounded bg-white">
+  <div class="flex gap-3">
+    <h5>@<%= comment.user.username %></h5>
+    <h6><%= comment.created_at.to_fs(:day_month_name_year) %></h6>
+  </div>
+
+  <div>
+    <%= comment.body %>
+  </div>
+</div>

@@ -1,6 +1,15 @@
 class ReviewsController < ApplicationController
+  include TrackReviewVisits
+
+  before_action :authenticate_user!, only: %i[new create toggle_like]
+  before_action :track_visit, only: :show
+
   def index
     @reviews = Review.all
+  end
+
+  def show
+    @review = Review.find_by(id: review_params[:id])
   end
 
   def new
@@ -8,20 +17,31 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.writer = current_user
+    @review = current_user.reviews.build(create_review_params)
 
     if @review.save
       flash[:notive] = 'Review was successfully created'
-      redirect_to root_path
+      redirect_to account_index_path
     else
-      render 'new'
+      redirect_to new_review_path
     end
+  end
+
+  def toggle_like
+    @review = Review.find_by(id: review_params[:id])
+
+    LikesService.toggle_like(user: current_user, likable: @review)
+
+    @review.reload
   end
 
   private
 
-  def review_params
+  def create_review_params
     params.require(:review).permit(:title, :book_name, :author, :body, :cover)
+  end
+
+  def review_params
+    params.permit(:id)
   end
 end

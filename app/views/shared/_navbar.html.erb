@@ -1,0 +1,29 @@
+<nav class="z-10 flex justify-between items-center bg-white w-full px-12 py-2 border-b border-[#7a7a7a]">
+
+ <%= link_to root_path, class: 'flex items-center gap-2 hover:font-sans rounded overflow-hidden'  do %>
+  <%= image_tag(image_path('logo.png'), class: 'w-auto h-12 ') %>
+  <h1 class=" font-extrabold text-2xl text-[#3e3e3e]">BReview</h1>
+ <% end %>
+
+  <ul class="grow flex justify-end items-center gap-4 mx-auto">
+
+    <% if user_signed_in? %>
+
+      <li class="overflow-hidden hover:font-sans">
+        <%= link_to "Home", root_path, class: ' font-extrabold text-xl'  %>
+      </li>
+
+      <li class="overflow-hidden hover:font-sans">
+        <%= link_to "Reviews", reviews_path, class: ' font-extrabold text-xl '  %>
+      </li>
+
+      <li class="overflow-hidden hover:font-sans">
+        <%= link_to "Account", account_index_path, class: ' font-extrabold text-xl'  %>
+      </li>
+    <% else %>
+      <%= link_to "Log In", new_user_session_path, class: ' text-base'  %>
+
+      <%= link_to "Create Account", new_user_registration_path, class: ' border border-black p-2 rounded text-base'  %>
+    <% end %>
+  </ul>
+</nav>

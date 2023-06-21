@@ -30,13 +30,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set uo Ruby
+      - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.0'
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.13.1'
+
       - name: Install dependent libraries
-        run: sudo apt-get install libpq-dev
+        run: |
+          sudo apt-get install libpq-dev
+          sudo apt-get install libvips
+
+      - name: Install Packages 
+        run: |
+          npm install
 
       - name: Bundle Install
         run: |

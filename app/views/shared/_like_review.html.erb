@@ -1,0 +1,20 @@
+<%= turbo_frame_tag dom_id(review, :likes) do %>
+  <% if user_signed_in? %>
+    <div class="realtive group">
+        <%= button_to toggle_like_review_path(review) do %>
+          <% if review.liked?(user: current_user) %>
+            <i class="fa-solid fa-heart text-rose-600"></i>
+          <% else %>
+            <i class="fa-regular fa-heart text-slate-400 group-hover:text-rose-600"></i>
+          <% end %>
+
+          <span><%= review.likes_count %></span>
+        <% end %>
+    </div>
+  <% else %>
+    <div class="realtive group">
+      <i class="fa-regular fa-heart text-slate-400"></i>
+      <span><%= review.likes_count %></span>
+    </div>
+  <% end %>
+<% end %>

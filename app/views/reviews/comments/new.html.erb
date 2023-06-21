@@ -1,0 +1,9 @@
+<%= turbo_frame_tag dom_id(@review, 'new_comment') do %>
+  <%= form_for [@review, @comment], class: 'my-4' do |f| %>
+    <%= f.text_area :body, class: 'input--light', placeholder: 'Add the comment', disabled: !user_signed_in? %>
+    <%= f.submit "Publish", class: 'button--purple w-[200px]', disabled: !user_signed_in? %>
+  <% end %>
+
+  <%= link_to "Log in", new_user_session_path, class: ' border border-black p-2 rounded text-base' unless user_signed_in? %>
+
+<% end %>

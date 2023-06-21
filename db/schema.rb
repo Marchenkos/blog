@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_27_144025) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_24_194207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,15 +42,49 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_144025) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.bigint "writer_id", null: false
-    t.string "title"
-    t.text "body"
-    t.string "author"
-    t.string "book_name"
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.integer "likes_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["writer_id"], name: "index_reviews_on_writer_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "likable_type", null: false
+    t.bigint "likable_id", null: false
+    t.index ["likable_type", "likable_id"], name: "index_likes_on_likable"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "review_visits", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "review_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_review_visits_on_review_id"
+    t.index ["user_id"], name: "index_review_visits_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title", null: false
+    t.string "body", null: false
+    t.string "author", null: false
+    t.string "book_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "likes_count", default: 0
+    t.integer "comments_count", default: 0
+    t.integer "review_visits_count", default: 0
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,5 +104,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_144025) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "reviews", "users", column: "writer_id"
+  add_foreign_key "comments", "users"
+  add_foreign_key "likes", "users"
+  add_foreign_key "review_visits", "reviews"
+  add_foreign_key "review_visits", "users"
+  add_foreign_key "reviews", "users"
 end

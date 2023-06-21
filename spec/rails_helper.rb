@@ -8,6 +8,7 @@ require 'rspec/rails'
 
 require 'support/factory_bot'
 require 'support/devise'
+require 'support/shoulda_matchers'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -61,6 +62,8 @@ RSpec.configure do |config|
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
+
+  config.include Devise::Test::IntegrationHelpers, type: :request
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
